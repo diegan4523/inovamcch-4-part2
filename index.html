@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>proyectbiode | llaberos de bioplástico</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#0f1512;
+  --panel:#17201b;
+  --line:#2a3830;
+  --text:#ede8dc;
+  --mute:#9aa596;
+  --brass:#c8a96a;
+  --green:#4f9a5f;
+  --red:#c4453e;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Jost, sans-serif;
+  line-height:1.55;
+}
+
+.wrap {
+  max-width:880px;
+  margin:auto;
+  padding:20px 20px 60px;
+}
+
+header {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--line);
+}
+
+header svg {
+  width:36px;
+  height:36px;
+  color:var(--brass);
+}
+
+.brand {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;
+  font-weight:600;
+}
+
+nav {
+  display:flex;
+  gap:6px;
+  margin-top:18px;
+  padding:5px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--panel);
+}
+
+nav button {
+  flex:1;
+  border:0;
+  background:none;
+  color:var(--mute);
+  padding:12px 6px;
+  border-radius:999px;
+  cursor:pointer;
+  font-family:Jost,sans-serif;
+  font-size:0.9rem;
+}
+
+nav button[aria-selected="true"] {
+  background:var(--bg);
+  color:var(--text);
+  border:1px solid var(--line);
+}
+
+.view {
+  display:none;
+}
+
+.view.on {
+  display:block;
+}
+
+.hero {
+  text-align:center;
+  padding:48px 0 20px;
+}
+
+.mark {
+  width:120px;
+  height:120px;
+  color:var(--brass);
+  margin-bottom:20px;
+}
+
+h1,h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-weight:500;
+}
+
+h1 {
+  font-size:clamp(2.2rem,7vw,3.4rem);
+  line-height:1.1;
+}
+
+h2 {
+  font-size:2.2rem;
+  margin:35px 0 8px;
+}
+
+.hero p,.sub {
+  color:var(--mute);
+}
+
+.hero p {
+  max-width:440px;
+  margin:16px auto 30px;
+}
+
+.cta {
+  display:grid;
+  gap:12px;
+  max-width:380px;
+  margin:auto;
+}
+
+.btn {
+  display:block;
+  width:100%;
+  padding:15px 20px;
+  border-radius:999px;
+  font:500 1rem Jost,sans-serif;
+  cursor:pointer;
+  border:1px solid var(--brass);
+  text-decoration:none;
+  text-align:center;
+}
+
+.btn.p {
+  background:var(--brass);
+  color:#16130b;
+}
+
+.btn.s {
+  background:transparent;
+  color:var(--text);
+  border-color:var(--line);
+}
+
+.btn:hover {
+  opacity:0.85;
+}
+
+/* REDES SOCIALES */
+
+.social-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+  margin-top:25px;
+}
+
+.social-card {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:25px;
+  text-align:center;
+  transition:transform 0.2s;
+}
+
+.social-card:hover {
+  transform:translateY(-5px);
+  border-color:var(--brass);
+}
+
+.social-icon {
+  width:65px;
+  height:65px;
+  margin:0 auto 15px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  font-size:35px;
+  font-weight:bold;
+  color:white;
+}
+
+.instagram {
+  background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+}
+
+.tiktok {
+  background:#050505;
+  text-shadow:2px 2px #ff0050,-2px -2px #00f2ea;
+}
+
+.facebook {
+  background:#1877f2;
+}
+
+.social-card h3 {
+  font-size:1.3rem;
+  margin:5px 0 10px;
+}
+
+.social-card p {
+  color:var(--mute);
+  font-size:0.92rem;
+  min-height:90px;
+}
+
+.social-card a {
+  display:block;
+  background:var(--brass);
+  color:#16130b;
+  padding:12px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:500;
+  margin-top:15px;
+}
+
+/* PERSONALIZADOR */
+
+.studio {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px;
+  display:grid;
+  gap:18px;
+}
+
+.stage {
+  display:grid;
+  place-items:center;
+  background:var(--bg);
+  border-radius:12px;
+  padding:20px;
+}
+
+.stage svg {
+  width:min(240px,70%);
+  height:auto;
+}
+
+.lbl {
+  font-size:0.9rem;
+  color:var(--mute);
+  margin:0 0 8px;
+}
+
+.chips {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.chip {
+  border:1px solid var(--line);
+  background:none;
+  color:var(--text);
+  padding:8px 14px;
+  border-radius:999px;
+  font:400 0.92rem Jost,sans-serif;
+  cursor:pointer;
+}
+
+.chip[aria-pressed="true"] {
+  border-color:var(--brass);
+  color:var(--brass);
+}
+
+.chip i {
+  display:inline-block;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  margin-right:7px;
+}
+
+.price {
+  color:var(--brass);
+  font-size:1.5rem;
+  font-weight:500;
+}
+
+.back {
+  background:none;
+  border:0;
+  color:var(--mute);
+  font:500 0.9rem Jost,sans-serif;
+  cursor:pointer;
+  padding:20px 0;
+}
+
+footer {
+  margin-top:50px;
+  border-top:1px solid var(--line);
+  padding-top:20px;
+  text-align:center;
+  color:var(--mute);
+  font-size:0.85rem;
+}
+
+@media(max-width:480px) {
+  nav button {
+    font-size:0.78rem;
+    padding:10px 4px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FORMAS DE LOS COLGANTES -->
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+
+<symbol id="s-hoja" viewBox="0 0 64 64">
+<circle cx="32" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
+<path d="M32 12C52 22 56 44 32 60 8 44 12 22 32 12z" fill="currentColor"/>
+<path d="M32 24v30" stroke="#fffdf2" stroke-width="1.8" opacity=".55"/>
+</symbol>
+
+<symbol id="s-corazon" viewBox="0 0 64 64">
+<circle cx="32" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
+<path d="M32 60C11 45 7 33 7 25a12.5 12.5 0 0 1 25-4 12.5 12.5 0 0 1 25 4c0 8-4 20-25 35z" fill="currentColor"/>
+</symbol>
+
+<symbol id="s-gota" viewBox="0 0 64 64">
+<circle cx="32" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
+<path d="M32 12C42 28 53 36 53 44a21 21 0 0 1-42 0c0-8 11-16 21-32z" fill="currentColor"/>
+</symbol>
+
+<symbol id="s-estrella" viewBox="0 0 64 64">
+<circle cx="32" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
+<path d="M32 12l7 16 17 1-13 11 4 17-15-9-15 9 4-17L8 29l17-1z" fill="currentColor"/>
+</symbol>
+
+<symbol id="s-luna" viewBox="0 0 64 64">
+<circle cx="32" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
+<path d="M42 14A25 25 0 1 0 56 46 20 20 0 0 1 42 14z" fill="currentColor"/>
+</symbol>
+
+<symbol id="s-circulo" viewBox="0 0 64 64">
+<circle cx="32" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
+<circle cx="32" cy="36" r="24" fill="currentColor"/>
+<circle cx="32" cy="36" r="16" fill="none" stroke="#fffdf2" stroke-width="1.6"/>
+</symbol>
+
+<!-- LOGO: flor de 5 pétalos, plana, con argolla arriba como las demás formas -->
+<symbol id="logo" viewBox="0 0 64 64">
+<circle cx="32" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
+<g fill="currentColor">
+<ellipse cx="32" cy="25" rx="11" ry="13"/>
+<ellipse cx="32" cy="25" rx="11" ry="13" transform="rotate(72 32 37)"/>
+<ellipse cx="32" cy="25" rx="11" ry="13" transform="rotate(144 32 37)"/>
+<ellipse cx="32" cy="25" rx="11" ry="13" transform="rotate(216 32 37)"/>
+<ellipse cx="32" cy="25" rx="11" ry="13" transform="rotate(288 32 37)"/>
+</g>
+<circle cx="32" cy="37" r="8" fill="#fffdf2" opacity=".92"/>
+</symbol>
+
+</svg>
+
+<div class="wrap">
+
+<header>
+<svg aria-hidden="true"><use href="#logo"/></svg>
+<span class="brand">proyectbiode</span>
+</header>
+
+<!-- MENÚ -->
+
+<nav role="tablist" aria-label="Secciones">
+<button data-go="home" aria-selected="true">Inicio</button>
+<button data-go="redes" aria-selected="false">Redes sociales</button>
+<button data-go="formas" aria-selected="false">Formas y colores</button>
+</nav>
+
+<!-- INICIO -->
+
+<section class="view on" id="home">
+
+<div class="hero">
+
+<svg class="mark" role="img" aria-label="Logo de Sigordosi">
+<use href="#logo"/>
+</svg>
+
+<h1>llaberos</h1>
+
+<p>
+Piezas delgadas de bioplástico en diferentes formas,
+disponibles en verde y rojo.
+</p>
+
+<p class="price">$27 MXN por pieza</p>
+
+<div class="cta">
+
+<button class="btn p" data-go="formas">
+Personalizar colgante
+</button>
+
+<button class="btn s" data-go="redes">
+Nuestras redes sociales
+</button>
+
+</div>
+</div>
+</section>
+
+<!-- REDES SOCIALES -->
+
+<section class="view" id="redes">
+
+<h2>Nuestras redes sociales</h2>
+
+<p class="sub">
+Conoce nuestros diseños, descubre cómo fabricamos
+nuestros colgantes de bioplástico y contáctanos
+para realizar tu pedido.
+</p>
+
+<div class="social-grid">
+
+<!-- INSTAGRAM -->
+
+<article class="social-card">
+
+<div class="social-icon instagram">◎</div>
+
+<h3>Instagram</h3>
+
+<p>
+Descubre fotografías de nuestros colgantes,
+nuevos diseños, colores y publicaciones
+especiales de proyectbiode.
+</p>
+
+<a id="instagramLink"
+href="https://www.instagram.com/proyectbiode/"
+target="_blank"
+rel="noopener noreferrer">
+Visitar Instagram
+</a>
+
+</article>
+
+<!-- TIKTOK -->
+
+<article class="social-card">
+
+<div class="social-icon tiktok">♪</div>
+
+<h3>TikTok</h3>
+
+<p>
+Mira videos cortos de nuestros productos,
+su proceso de elaboración y las diferentes
+formas disponibles.
+</p>
+
+<a id="tiktokLink"
+href="https://www.tiktok.com/"
+target="_blank"
+rel="noopener noreferrer">
+Visitar TikTok
+</a>
+
+</article>
+
+<!-- FACEBOOK -->
+
+<article class="social-card">
+
+<div class="social-icon facebook">f</div>
+
+<h3>Facebook</h3>
+
+<p>
+Conoce nuestras publicaciones,
+consulta los precios y comunícate
+con nosotros para realizar pedidos.
+</p>
+
+<a id="facebookLink"
+href="https://www.facebook.com/"
+target="_blank"
+rel="noopener noreferrer">
+Visitar Facebook
+</a>
+
+</article>
+
+</div>
+
+<button class="back" data-go="home">
+← Volver al inicio
+</button>
+
+</section>
+
+<!-- FORMAS Y COLORES -->
+
+<section class="view" id="formas">
+
+<h2>Formas y colores</h2>
+
+<p class="sub">
+Combina la forma y el color para visualizar
+cómo quedaría tu colgante.
+</p>
+
+<div class="studio">
+
+<div class="stage">
+<svg id="prev"
+viewBox="-6 -34 76 98"
+role="img"
+aria-label="Vista previa del colgante">
+</svg>
+</div>
+
+<div>
+<p class="lbl">Selecciona una forma</p>
+<div class="chips" id="shapes"></div>
+</div>
+
+<div>
+<p class="lbl">Selecciona un color</p>
+<div class="chips" id="cols"></div>
+</div>
+
+<p class="price">Precio: $27 MXN</p>
+
+<p class="lbl" id="hint"></p>
+
+<a class="btn p"
+id="pedidoInstagram"
+href="https://www.instagram.com/proyectbiode/"
+target="_blank"
+rel="noopener noreferrer">
+Pedir por Instagram
+</a>
+
+<button class="btn s" data-go="redes">
+Ver redes sociales
+</button>
+
+</div>
+
+<button class="back" data-go="home">
+← Volver al inicio
+</button>
+
+</section>
+
+<footer>
+© 2026 proyectbiode · Colgantes de bioplástico
+</footer>
+
+</div>
+
+<script>
+(function(){
+
+// ===================================
+// CONFIGURACIÓN DE REDES SOCIALES
+// ===================================
+
+// Cambia estas direcciones por las
+// cuentas reales de Sigordosi.
+
+const REDES = {
+  instagram:"https://www.instagram.com/proyectbiode/",
+  tiktok:"https://www.tiktok.com/",
+  facebook:"https://www.facebook.com/"
+};
+
+document.getElementById("instagramLink").href =
+REDES.instagram;
+
+document.getElementById("tiktokLink").href =
+REDES.tiktok;
+
+document.getElementById("facebookLink").href =
+REDES.facebook;
+
+document.getElementById("pedidoInstagram").href =
+REDES.instagram;
+
+
+// ===================================
+// NAVEGACIÓN
+// ===================================
+
+const views = document.querySelectorAll(".view");
+const tabs = document.querySelectorAll("nav button");
+
+function go(id){
+
+  views.forEach(function(view){
+    view.classList.toggle("on",view.id===id);
+  });
+
+  tabs.forEach(function(tab){
+    tab.setAttribute(
+      "aria-selected",
+      tab.dataset.go===id
+    );
+  });
+
+  window.scrollTo(0,0);
+}
+
+document.addEventListener("click",function(e){
+
+  const boton=e.target.closest("[data-go]");
+
+  if(boton){
+    go(boton.dataset.go);
+  }
+
+});
+
+
+// ===================================
+// FORMAS DISPONIBLES
+// ===================================
+
+const FORMAS=[
+  {id:"hoja",nombre:"Hoja"},
+  {id:"corazon",nombre:"Corazón"},
+  {id:"gota",nombre:"Gota"},
+  {id:"estrella",nombre:"Estrella"},
+  {id:"luna",nombre:"Luna"},
+  {id:"circulo",nombre:"Círculo"}
+];
+
+const COLORES={
+  verde:{
+    nombre:"Verde",
+    valor:"var(--green)"
+  },
+  rojo:{
+    nombre:"Rojo",
+    valor:"var(--red)"
+  }
+};
+
+let formaActual="hoja";
+let colorActual="verde";
+
+const prev=document.getElementById("prev");
+const shapes=document.getElementById("shapes");
+const cols=document.getElementById("cols");
+
+
+// ===================================
+// VISTA PREVIA DEL COLGANTE
+// ===================================
+
+function dibujar(){
+
+  prev.style.color=COLORES[colorActual].valor;
+
+  const cuerda=`
+    <path
+      d="M8 -34L32 3M56 -34L32 3"
+      stroke="var(--mute)"
+      stroke-width="1.4"
+      fill="none"
+      stroke-linecap="round"
+    />
+  `;
+
+  let figura="";
+
+  if(formaActual==="custom"){
+
+    figura=`
+      <circle
+        cx="32"
+        cy="7"
+        r="4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      />
+
+      <rect
+        x="8"
+        y="12"
+        width="48"
+        height="48"
+        rx="12"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-dasharray="4 4"
+      />
+
+      <text
+        x="32"
+        y="40"
+        text-anchor="middle"
+        fill="currentColor"
+        font-size="9">
+        Tu diseño
+      </text>
+    `;
+
+  }else{
+
+    figura=`
+      <use
+        href="#s-${formaActual}"
+        width="64"
+        height="64">
+      </use>
+    `;
+
+  }
+
+  prev.innerHTML=cuerda+figura;
+
+  document.getElementById("hint").textContent=
+    formaActual==="custom"
+    ? "Cuéntanos tu idea por Instagram."
+    : "";
+
+  shapes.querySelectorAll("button").forEach(function(b){
+
+    b.setAttribute(
+      "aria-pressed",
+      b.dataset.k===formaActual
+    );
+
+  });
+
+  cols.querySelectorAll("button").forEach(function(b){
+
+    b.setAttribute(
+      "aria-pressed",
+      b.dataset.k===colorActual
+    );
+
+  });
+
+}
+
+
+// ===================================
+// BOTONES DE FORMAS
+// ===================================
+
+FORMAS.forEach(function(forma){
+
+  const boton=document.createElement("button");
+
+  boton.className="chip";
+  boton.textContent=forma.nombre;
+  boton.dataset.k=forma.id;
+
+  boton.onclick=function(){
+
+    formaActual=forma.id;
+    dibujar();
+
+  };
+
+  shapes.appendChild(boton);
+
+});
+
+
+// OPCIÓN PERSONALIZADA
+
+const personalizado=document.createElement("button");
+
+personalizado.className="chip";
+personalizado.textContent="Custom";
+personalizado.dataset.k="custom";
+
+personalizado.onclick=function(){
+
+  formaActual="custom";
+  dibujar();
+
+};
+
+shapes.appendChild(personalizado);
+
+
+// ===================================
+// BOTONES DE COLORES
+// ===================================
+
+Object.keys(COLORES).forEach(function(k){
+
+  const boton=document.createElement("button");
+
+  boton.className="chip";
+  boton.dataset.k=k;
+
+  boton.innerHTML=`
+    <i style="background:${COLORES[k].valor}"></i>
+    ${COLORES[k].nombre}
+  `;
+
+  boton.onclick=function(){
+
+    colorActual=k;
+    dibujar();
+
+  };
+
+  cols.appendChild(boton);
+
+});
+
+dibujar();
+
+})();
+</script>
+
+</body>
+</html>
